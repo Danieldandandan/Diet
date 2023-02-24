@@ -1,18 +1,37 @@
-package com.example.demo.User;
+package com.example.demo.myUser;
 
 import java.time.LocalDate;
 
-public class User {
+import jakarta.persistence.Table;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.SequenceGenerator;
+
+@Entity
+@Table
+public class myUser {
+    @Id
+    @SequenceGenerator (
+        name = "student_sequence",
+        sequenceName = "student_sequence",
+        allocationSize = 1
+    )
+    @GeneratedValue(
+        strategy = GenerationType.SEQUENCE,
+        generator = "student_sequence"
+    )
     private Long id;
     private String name;
     private LocalDate dob;
     private String email; 
     private Integer age;
-    public User() {
+    public myUser() {
 
     }
 
-    public User(    Long id,
+    public myUser(    Long id,
                     String name,
                     LocalDate dob,
                     String email,
@@ -23,7 +42,7 @@ public class User {
         this.email = email;
         this.age = age; 
     }
-    public User(    String name,
+    public myUser(    String name,
                     LocalDate dob,
                     String email,
                     Integer age) {
@@ -70,7 +89,7 @@ public class User {
 
     @Override
     public String toString(){
-        return "User{ " +
+        return "myUser{ " +
                 ", id = " + id +
                 ", name = " + name +
                 ", emial = " + email +

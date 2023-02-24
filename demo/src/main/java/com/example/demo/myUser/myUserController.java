@@ -1,4 +1,4 @@
-package com.example.demo.User;
+package com.example.demo.myUser;
 
 import java.util.*;
 
@@ -9,18 +9,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 // API lyer
 
 @RestController
-@RequestMapping(path = "api/v1/user")
-public class UserController {
+@RequestMapping(path = "api/v1/myuser")
+public class myUserController {
     
-    private final UserService userService;
+    private final myUserService myUserService;
 
     @Autowired
-    public UserController (UserService userService) {
-        this.userService = userService;
+    public myUserController (myUserService myUserService) {
+        this.myUserService = myUserService;
     }
 
     @GetMapping
-	public List<User> getUser(){
-        return userService.getUser();
+	public List<myUser> getmyUser(){
+        return myUserService.getmyUser();
 	}
 }
