@@ -1,0 +1,16 @@
+POST http://localhost:8080/api/v1/appuser
+content-type: application/json
+
+{
+    "name": "victoria",
+    "email": "victoriakaey@gmail.com",
+    "dob": "1997-04-12"
+}
+
+### test delete user
+DELETE http://localhost:8080/api/v1/appuser/1
+
+### test put user
+PUT http://localhost:8080/api/v1/appuser/1?name=DanielCHU&email=daniel@gmail.com
+
+content-type: application/json

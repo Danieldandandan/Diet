@@ -1,4 +1,4 @@
-package com.example.demo.myUser;
+package com.example.demo.AppUser;
 
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
@@ -8,22 +8,20 @@ import java.time.LocalDate;
 import java.time.Month;
 import java.util.*;
 @Configuration
-public class myUserConfig {
+public class AppUserConfig {
 
     @Bean
-    CommandLineRunner CommandLineRunner(myUserRepository myUserRepository) {
+    CommandLineRunner CommandLineRunner(AppUserRepository myUserRepository) {
         return args -> {
-            myUser daniel = new myUser(
+            AppUser daniel = new AppUser(
                     "Daniel",
                     LocalDate.of(1999,Month.SEPTEMBER,8),
-                    "chuzhencheng1999@gmail.com",
-                    23
+                    "chuzhencheng1999@gmail.com"
             );
-            myUser jack = new myUser(
+            AppUser jack = new AppUser(
                     "jack",
                     LocalDate.of(2007,Month.APRIL,6),
-                    "zhenxichu@gmail.com",
-                    23
+                    "zhenxichu@gmail.com"
             );
             myUserRepository.saveAll(
                 List.of(daniel,jack)

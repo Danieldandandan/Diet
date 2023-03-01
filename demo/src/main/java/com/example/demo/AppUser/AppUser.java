@@ -1,17 +1,17 @@
-package com.example.demo.myUser;
+package com.example.demo.AppUser;
 
-import java.time.LocalDate;
+import java.time.*;
 
 import jakarta.persistence.Table;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.SequenceGenerator;
+import jakarta.persistence.*;
 
 @Entity
 @Table
-public class myUser {
+public class AppUser {
     @Id
     @SequenceGenerator (
         name = "student_sequence",
@@ -26,30 +26,28 @@ public class myUser {
     private String name;
     private LocalDate dob;
     private String email; 
+    @Transient
     private Integer age;
-    public myUser() {
+
+    public AppUser() {
 
     }
 
-    public myUser(    Long id,
+    public AppUser(  Long id,
                     String name,
                     LocalDate dob,
-                    String email,
-                    Integer age) {
+                    String email) {
         this.id = id;
         this.name = name;
         this.dob = dob;
         this.email = email;
-        this.age = age; 
     }
-    public myUser(    String name,
+    public AppUser(  String name,
                     LocalDate dob,
-                    String email,
-                    Integer age) {
+                    String email) {
         this.name = name;
         this.dob = dob;
         this.email = email;
-        this.age = age; 
     }
     public Long getId(){
         return id;
@@ -84,7 +82,7 @@ public class myUser {
     }
 
     public Integer getAge() {
-        return age;
+        return Period.between(this.dob, LocalDate.now()).getYears();
     }
 
     @Override
