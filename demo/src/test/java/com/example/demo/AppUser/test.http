@@ -7,6 +7,15 @@ content-type: application/json
     "dob": "1997-04-12"
 }
 
+### test login
+POST http://localhost:8080/api/v1/appuser/login
+content-type: application/json
+
+{
+    "email": "chuzhencheng1999@gmail.com",
+    "password": "passwordDaniel"
+}
+
 ### test delete user
 DELETE http://localhost:8080/api/v1/appuser/1
 

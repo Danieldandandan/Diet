@@ -13,19 +13,13 @@ import jakarta.persistence.*;
 @Table
 public class AppUser {
     @Id
-    @SequenceGenerator (
-        name = "student_sequence",
-        sequenceName = "student_sequence",
-        allocationSize = 1
-    )
-    @GeneratedValue(
-        strategy = GenerationType.SEQUENCE,
-        generator = "student_sequence"
-    )
+    @SequenceGenerator(name = "student_sequence", sequenceName = "student_sequence", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "student_sequence")
     private Long id;
     private String name;
     private LocalDate dob;
-    private String email; 
+    private String email;
+    private String password;
     @Transient
     private Integer age;
 
@@ -33,27 +27,46 @@ public class AppUser {
 
     }
 
-    public AppUser(  Long id,
-                    String name,
-                    LocalDate dob,
-                    String email) {
+    public AppUser(String email,
+            String password) {
+        this.password = password;
+        this.email = email;
+
+    }
+
+    public AppUser(Long id,
+            String name,
+            LocalDate dob,
+            String email) {
         this.id = id;
         this.name = name;
         this.dob = dob;
         this.email = email;
     }
-    public AppUser(  String name,
-                    LocalDate dob,
-                    String email) {
+
+    public AppUser(String name,
+            LocalDate dob,
+            String email,
+            String password) {
         this.name = name;
         this.dob = dob;
         this.email = email;
+        this.password = password;
     }
-    public Long getId(){
+
+    public boolean comparePassword(String s) {
+        return s.equals(this.password); // Need change for safty reason
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public Long getId() {
         return id;
     }
 
-    public void setId(Long id){
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -76,7 +89,7 @@ public class AppUser {
     public LocalDate getDob() {
         return dob;
     }
-    
+
     public void setDob(LocalDate dob) {
         this.dob = dob;
     }
@@ -85,14 +98,19 @@ public class AppUser {
         return Period.between(this.dob, LocalDate.now()).getYears();
     }
 
+    public String getPassword() {
+        return this.password;
+    }
+
     @Override
-    public String toString(){
+    public String toString() {
         return "myUser{ " +
                 ", id = " + id +
                 ", name = " + name +
                 ", emial = " + email +
                 ", dob = " + dob +
-                ", age = " + age + 
+                ", age = " + age +
+                ", password" + password +
                 " }";
     }
 }
